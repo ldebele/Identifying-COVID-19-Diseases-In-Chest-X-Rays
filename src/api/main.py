@@ -15,7 +15,6 @@ from tensorflow.keras.applications.inception_v3 import preprocess_input
 
 app = FastAPI(title="Identify COVID-19 Disease In Chest X-Rays")
 
-
 class FileUpload(BaseModel):
     file: UploadFile
 
@@ -24,8 +23,10 @@ class FileUpload(BaseModel):
 def load_model():
     # Load the model
     global model
-    model_path = glob.glob('./*.h5')[0]
+    # model_path = glob.glob('./models/*.h5')[0]
+    model_path = "/app/models/2023-09-02_xception.h5"
     model = tf.keras.models.load_model(model_path)
+
 
 # redirect
 @app.get("/", include_in_schema=False)
@@ -62,6 +63,6 @@ def predict(file: UploadFile = File(...)):
 
 
 
-
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+# if __name__ == "__main__":
+#     uvicorn.run(app, host="0.0.0.0", port=8080)
+#     # ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
