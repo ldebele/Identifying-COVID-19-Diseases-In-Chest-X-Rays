@@ -24,7 +24,7 @@ def load_model():
     # Load the model
     global model
     # model_path = glob.glob('./models/*.h5')[0]
-    model_path = "/app/models/2023-09-02_xception.h5"
+    model_path = "./models/2023-09-02_xception.h5"
     model = tf.keras.models.load_model(model_path)
 
 
@@ -63,6 +63,5 @@ def predict(file: UploadFile = File(...)):
 
 
 
-# if __name__ == "__main__":
-#     uvicorn.run(app, host="0.0.0.0", port=8080)
-#     # ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8080)
