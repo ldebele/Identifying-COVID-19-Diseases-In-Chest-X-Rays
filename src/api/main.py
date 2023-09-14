@@ -1,4 +1,3 @@
-import glob
 import numpy as np
 from PIL import Image
 
@@ -23,8 +22,7 @@ class FileUpload(BaseModel):
 def load_model():
     # Load the model
     global model
-    # model_path = glob.glob('./models/*.h5')[0]
-    model_path = "./models/2023-09-02_xception.h5"
+    model_path = "/app/models/2023-09-02_xception.h5"
     model = tf.keras.models.load_model(model_path)
 
 

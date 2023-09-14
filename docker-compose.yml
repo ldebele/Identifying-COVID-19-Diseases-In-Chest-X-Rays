@@ -1,0 +1,22 @@
+version: "3"
+services:
+  api:
+    image: covid-detection-app
+    ports: 
+      - "8080:8000" 
+    volumes:
+      - ./models:/app/models/
+
+  locust:
+    image: locustio/locust
+    container_name: locust
+    ports: 
+      - "8089:8089"
+    volumes: 
+      - ./:/locust 
+    command: -f /locust/locustfile.py
+
+
+networks:
+  default:
+    name: fastapi-locust-network
