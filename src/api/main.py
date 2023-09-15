@@ -22,7 +22,7 @@ class FileUpload(BaseModel):
 def load_model():
     # Load the model
     global model
-    model_path = "/app/models/2023-09-02_xception.h5"
+    model_path = "./models/2023-09-02_xception.h5"
     model = tf.keras.models.load_model(model_path)
 
 
@@ -55,7 +55,7 @@ def predict(file: UploadFile = File(...)):
 
     # predict the image
     predict_coef = model.predict(img)
-    disease_type = ["COVID" if predict_coef >= 0.25 else "Non-COVID"]
+    disease_type = "COVID" if predict_coef >= 0.25 else "Non-COVID"
 
     return {"Disease Type": disease_type}
 

@@ -8,15 +8,14 @@ services:
       - ./models:/app/models/
 
   locust:
-    image: locustio/locust
-    container_name: locust
+    image: locust
     ports: 
       - "8089:8089"
-    volumes: 
-      - ./:/locust 
-    command: -f /locust/locustfile.py
+    # volumes: 
+    #   - ./test/test_load_server:/locust 
+    command: -f locustfile.py
 
 
 networks:
-  default:
-    name: fastapi-locust-network
+  fastapi-locust-network:
+    driver: bridge
